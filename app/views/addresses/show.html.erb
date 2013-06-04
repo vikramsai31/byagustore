@@ -1,0 +1,44 @@
+<div id="mainBody">
+  <div class="container">
+  <div class="row">
+  
+  
+  <div class="span9">
+    <ul class="breadcrumb">
+    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+    <li><a href="products.html">Products</a> <span class="divider">/</span></li>
+    <li class="active">Address</li>
+    </ul>	
+<% if @address.nil? %>
+<h2>New Address</h2>
+
+<% else %>
+  <h3>My Address Book</h3><br />
+  <h4>Select Billing Address</h4>
+<% end %>
+
+<div class='row'>
+<% @address.each do |address| %>
+<div class="span3">
+	<div class="well">
+      <%= render :partial => 'show_addresses', :locals => {:address => address} %><br/>
+      <%= button_to 'Use', select_address_address_path(address), :class => 'btn', :method => :put %>
+     
+      <%= link_to 'Edit', edit_address_path(address.id), :class=>'active' %>
+      <%= link_to 'Delete', address_path(address.id), :data => {:confirm => 'Are you sure?'}, :method => :delete ,:class=>'active'%>
+      
+      </div>
+</div>
+  <% end %>
+ 
+ 
+</div>
+<%= link_to "Add Address", new_address_path ,:class=>"btn btn-large"%>
+</div>
+ </div>
+ </div>
+ <br>
+ 
+ 
+ 
+ 

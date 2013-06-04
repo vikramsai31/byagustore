@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bfirst_name: MyString
+  blast_name: MyString
+  baddress1: MyString
+  baddress2: MyString
+  bcity: MyString
+  bstate: MyString
+  string: MyString
+  bzipcode: MyString
+  string: MyString
+
+two:
+  bfirst_name: MyString
+  blast_name: MyString
+  baddress1: MyString
+  baddress2: MyString
+  bcity: MyString
+  bstate: MyString
+  string: MyString
+  bzipcode: MyString
+  string: MyString

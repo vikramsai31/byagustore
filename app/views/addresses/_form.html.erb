@@ -1,0 +1,102 @@
+<div class="span9">
+    <ul class="breadcrumb">
+		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+		<li><a href="index.html">Products</a> <span class="divider">/</span></li>
+		<li class="active">Billing/Shipping </li>
+    </ul>
+	<h3> Billing/Shipping </h3>	
+	
+	<hr class="soft"/>
+	<div class="row">
+
+		
+		
+	<div class="span9">
+		<%= form_for(@address ,:class=>"form-horizontal") do |f| %>
+		<div class="span9">
+		<div class="alert-error">
+			<%= render "shared/error_messages", :target => @address %>
+			<%= flash[:error] %>
+		</div>
+		</div>
+		
+			
+			<div class="well">
+			
+			<br/>
+			<div class="control-group">
+			<%= f.label :name, :class=>"control-label" %>
+			<div class="controls">
+				
+				 <%= f.text_field :name, :class=>"input-xlarge" ,:placeholder=>"Address Type" %>
+				</div>
+				</div>
+			
+			<div class="control-group">
+			<%= f.label :first_name, :class=>"control-label" %>
+			<div class="controls">
+				
+				 <%= f.text_field :first_name, :class=>"input-xlarge" ,:placeholder=>"First Name" %>
+				</div>
+				</div>
+	
+			  
+			  
+				<%= f.label :last_name, :class=>"control-label" %>
+				
+				 <%= f.text_field :last_name, :class=>"span3" ,:placeholder=>"Last Name" %>
+				
+			  
+			<div class="control-group">
+				<%= f.label :address1, :class=>"control-label" %>
+			
+				 <%= f.text_field :address1, :class=>"span3" ,:placeholder=>"Address1" %>
+				 
+				 <p class="help-block">Street Address, P.O. box, company name, c/o</span>
+				 </div>
+		<div class="control-group">
+			   
+				<%= f.label :address2, :class=>"control-label" %>
+				
+				 <%= f.text_field :address2, :class=>"span3" ,:placeholder=>"Address2" %>
+				 <p class="help-block">Apartment, suite, unit, building, floor, etc.</p>
+				</div>
+			  
+			  <div class="control-group">
+				<%= f.label :city, :class=>"control-label" %>
+				
+				 <%= f.text_field :city, :class=>"span3" ,:placeholder=>"City" %>
+				
+			  </div>
+			
+				<%= f.label :state, :class=>"control-label" %>
+			
+				 <%= f.text_field :state, :class=>"span3" ,:placeholder=>"State" %>
+				
+			  
+			
+				<%= f.label :zip, :class=>"control-label" %>
+				
+				 <%= f.text_field :zip, :class=>"span3" ,:placeholder=>"Zip" %>
+				  <div class="control-group">
+				 <%= f.label :phone, :class=>"control-label" %>
+				
+				 <%= f.text_field :phone, :class=>"span3" ,:placeholder=>"Phone" %>
+				 </div>
+			
+			 	 <%= f.check_box :billing_default, :class => 'checkbox inline' %>
+			 	<%= f.label :billing_default, "Make this my default shipping method", :class=>"control-label"  %>
+			 
+      
+       
+<%= f.submit "Add Address",:class=>"btn btn-success btn-large" %>
+	</div>
+	
+
+            <%end %>
+	</div>	
+	
+		
+	</div>
+	
+	

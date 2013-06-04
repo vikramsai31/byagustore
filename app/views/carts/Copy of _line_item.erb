@@ -1,0 +1,27 @@
+<%  @lineitem.each do |item| %>
+
+<tr>
+	<td><%= item.id %>
+<td><%= item.product.name %></td>
+<td><%= number_to_currency(item.product.price) %></td>
+
+<td><%= form_for(item) do |f| %>
+ 
+
+  <div class="field">
+
+    <%= f.number_field  :quantity %>
+    <%= f.submit "update" %>
+  </div>
+<% end %>
+</td>
+<td><%= number_to_currency(LineItem.get_price(item.id,item.product.price)) %></td>
+
+<td><%= link_to 'Remove', item , confirm: 'Are you sure?', method: :delete  %></td>
+
+</tr>
+
+<% end %>
+
+
+

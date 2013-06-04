@@ -1,0 +1,101 @@
+<table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Description</th>
+                  <th>Quantity/Update</th>
+				  <th>Price</th>
+                  <th>Discount</th>
+                  <th>Tax</th>
+                  <th>Total</th>
+				</tr>
+              </thead>
+              <tbody>
+              	<%  @lineitem.each do |item| %>
+                <tr>
+             
+
+                  <td> 
+                  	<% item.product.photos.each_with_index do |photo, i| %>
+          	<% if i == 0%>
+         
+         <%= link_to (image_tag photo.data.url(:thumb), :width => 60), product_path(item.product.id) %>
+            <% end %>
+            <% end %>
+                  </td>
+                  <td><b><%= link_to item.product.name,product_path(item.product.id) %></b>
+                  	<% if !item.variant_value.nil? %><br/>
+                  	<%= item.variant  %>:
+                  	<%= item.variant_value %>
+                  	<% end %>
+				  <td>
+				  	
+					<div class="input-append">
+						<%= form_for(item) do |f| %>
+						<%= f.number_field  :quantity ,:class=> 'span1', :style=>"max-width:34px"%>
+						
+						<%= f.submit "Update" , :class=>"btn"%>
+						
+						<% end %>
+						
+						<%= link_to "Remove", item , confirm: 'Are you sure?', method: :delete ,:class=>"btn btn-danger" %>	
+													
+						</div>
+						
+				  </td>
+				 
+                  <td><%= number_to_currency(item.product.price) %></td>
+                  <td>0</td>
+                   <td>0</td>
+                    <td><%= number_to_currency(item.product.price * item.quantity)  %></td>
+   
+                </tr>
+				
+				<%end %>
+                <tr>
+                  <td colspan="6" style="text-align:right">Total Price:	</td>
+                  <td> <%=  number_to_currency(Cart.get_total(current_cart))%></td>
+                </tr>
+				 <tr>
+                  <td colspan="6" style="text-align:right">Total Discount:	</td>
+                  <td> $0.00</td>
+                </tr>
+                 <tr>
+                  <td colspan="6" style="text-align:right">Total Tax:	</td>
+                  <td> $0.00</td>
+                </tr>
+				 <tr>
+                  <td colspan="6" style="text-align:right"><strong>TOTAL =</strong></td>
+                  <td class="label label-important"> <strong> <%=  number_to_currency(Cart.get_total(current_cart))%> </strong></td>
+                </tr>
+				</tbody>
+            </table>
+		
+		
+            <table class="table table-bordered">
+			<tbody>
+				 <tr>
+                  <td> 
+				<form class="form-horizontal">
+				<div class="control-group">
+				<label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
+				<div class="controls">
+				<input type="text" class="input-medium" placeholder="CODE">
+				<button type="submit" class="btn"> ADD </button>
+				</div>
+				</div>
+				</form>
+				</td>
+                </tr>
+				
+			</tbody>
+			</table>
+				<%= link_to products_path, :class=>"btn btn-large"  do %>
+				<i class="icon-arrow-left"></i> Continue Shopping 
+				<% end %>
+				
+	
+	<%= link_to new_address_path , :class=>"btn btn-large pull-right" do  %>
+	Check Out<i class="icon-arrow-right"></i> 
+	<% end %>
+	

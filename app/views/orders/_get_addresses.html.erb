@@ -1,0 +1,20 @@
+<div class="row-fluid">
+	<div class="span4">
+		<h3> Billing Address </h3>	
+<%= [@billing_address.first_name.titleize,@billing_address.last_name.titleize].compact.join(' ')%> <br />
+<%= [@billing_address.address1.titleize,@billing_address.address2.titleize].join(' ')%><br />
+<%= [@billing_address.city.titleize,@billing_address.state,@billing_address.zip].join(' ')%><br />
+	
+</div>
+<div class="span4">
+	
+	<h3> Shipping Address </h3>	
+	
+	
+<%= [@shipping_address.first_name.titleize,@shipping_address.last_name.titleize].compact.join(' ')%> <br />
+<%= [@shipping_address.address1.titleize,@shipping_address.address2.titleize].join(' ')%><br />
+<%= [@shipping_address.city.titleize,@shipping_address.state,@shipping_address.zip].join(' ')%><br />
+<span>Shipping is different from billing? </span><%= link_to 'Change' , address_path(current_user)%>
+	
+</div>
+</div>

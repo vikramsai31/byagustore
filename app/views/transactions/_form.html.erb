@@ -1,0 +1,48 @@
+
+<%= form_for(@transaction) do |f| %>
+
+	<div class="span9">
+		<h3> Place Order</h3>
+		<div class="alert-error">
+			<%= render "shared/error_messages", :target => @transaction %>
+		</div>
+		
+<div class="well">
+	 <div class="control-group">
+  <%= f.label :card_type %>
+  <div class="controls">
+    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]],:class=>"span3" %>
+  </div>
+  </div>
+  
+  <div class="control-group">
+   <%= f.label :card_number %>
+   <div class="controls">
+    <input type="text" size="20" autocomplete="off" data-encrypted-name="number" />
+    </div>
+    </div>
+ <div class="control-group">
+    <%= f.label :cvv, "Card Verification Value (CVV)" %>
+    <div class="controls">
+    <input type="text" size="4" autocomplete="off" data-encrypted-name="cvv" />
+     </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :card_expires_on %>
+     <div class="controls">
+              <input type="text" size="2" data-encrypted-name="month" /> / <input type="text" size="4" data-encrypted-name="year" />
+  </div>
+  </div>
+ 
+  <%= f.submit "Place Order",:class=>"btn btn-success btn-large" %>
+	
+	<%end %>
+	</div>
+	</div>	
+	<script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js"></script>
+    <script type="text/javascript" >
+    	var braintree = Braintree.create("MIIBCgKCAQEArg9anUuVhn9wZBKq0PQQ+KoNisXQJQlrJsj5XY1fJvQSasVUc7iRoUzfZ7O9U+NdNAdHCl3SrmAg4Lod1XaVpXuthaKYS5igG/gBN3Mf3Tbk2KK3s+1TUrsLUHzxgdh5z1clkDwVexizgrjYbGZhkkUft00csBq1gqI/RQ2JH0KNjumjgSiSCe3cI3l/n2jzGEvn9v14ZEt5efFbU12Bo4z+nbxKHJ9Q6ZgsJwRoLuYvKjEI6/IDsByHhKtdU0e0fV04u3RtKjiLmgYaT2wg1c6BlYQvYuEgYpzojvZtf0oKahxYDZFKrl0P3A32rUHRPK2wRWXRtHHe3NkyNAJsXwIDAQAB");
+ braintree.onSubmitEncryptForm('new_transaction');
+    </script>
+
+		<hr class="soft"/>

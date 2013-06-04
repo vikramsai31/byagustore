@@ -1,0 +1,95 @@
+<div class="span9">
+    <ul class="breadcrumb">
+		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+		<li class="active">Order</li>
+    </ul>
+	<h3> Order</h3>	
+	<hr class="soft"/>
+	<div class="well">
+
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field">
+    <%= f.label :shipping_first_name ,"First name"%><br />
+    <%= f.text_field :shipping_first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_last_name, "Last Name" %><br />
+    <%= f.text_field :shipping_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_middle_name , "Middle Name"%><br />
+    <%= f.text_field :shipping_middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_address1, "Address1" %><br />
+    <%= f.text_field :shipping_address1 %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_address2,"Address2"  %><br />
+    <%= f.text_field :shipping_address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_city, "City" %><br />
+    <%= f.text_field :shipping_city %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_state, "State" %><br />
+    <%= f.text_field :shipping_state %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_zip, "Zip" %><br />
+    <%= f.number_field :shipping_zip %>
+  </div>
+  Check if shipping address is same as billing address
+<input type="checkbox" name="billingtoo" onclick="FillBilling(this.form)">
+  <div class="field">
+    <%= f.label :billing_first_name, "First Name" %><br />
+    <%= f.text_field :billing_first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :billing_last_name, "Last Name" %><br />
+    <%= f.text_field :billing_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :billing_middle_name, "Middle Name" %><br />
+    <%= f.text_field :billing_middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :billing_address1, "Address1" %><br />
+    <%= f.text_field :billing_address1 %>
+  </div>
+  <div class="field">
+    <%= f.label :billing_address2, "Address2" %><br />
+    <%= f.text_field :billing_address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :billing_city, "City" %><br />
+    <%= f.text_field :billing_city %>
+  </div>
+  <div class="field">
+    <%= f.label :billing_state, "State" %><br />
+    <%= f.text_field :billing_state %>
+  </div>
+  <div class="field">
+    <%= f.label :billing_zip, "Zip" %><br />
+    <%= f.number_field :billing_zip %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,61 @@
+<div id="header">
+<div class="container">
+<div id="welcomeLine" class="row">
+  <div class="span6"><% if user_signed_in? %> <span class="pull-left"> <b>Namaste!!</b> &nbsp;<span style="color:green; font-weight:bold "><%=  current_user.email %> </span>
+  	<% else%> <b>Welcome!! </b><% end %></div>
+  <div class="span6">
+  <div class="pull-right">
+  	
+  <% if  !current_cart.nil? %>
+  <span class="btn btn-mini">$<%= Cart.get_total(current_cart)%></span>
+  <%= link_to cart_path(current_cart), :data=>{:toggle => "popover", :content=>"#{render 'shared/main_cart'}"},:id=>"maincart" do %>
+  <span class="btn btn-mini active">
+  <i class="icon-shopping-cart icon-white">
+  </i> [<%= LineItem.get_count(current_cart) %>] Items in your cart  </span>
+  <% end %>
+   <% end %>
+  
+  </div>
+
+		
+
+  
+  </div>
+</div>
+<!-- Navbar ================================================== -->
+<div id="logoArea" class="navbar">
+<a data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</a>
+ 
+<div class="navbar-inner">
+    <%= link_to root_path do  %>
+      <img src="/themes/images/byagu2.png" alt="Byagu"/>
+    <% end %>
+    </a>
+    <ul id="topMenu" class="nav pull-right">
+     <li class=""><%= link_to "Specials Offer" , products_path %></a></li>
+   <li class=""><a href="normal.html">Delivery</a></li>
+   <li class=""><a href="contact.html">Contact</a></li>
+   <li class=""><a href="#">My Account</a></li>
+   <li class="">
+   	<% if !user_signed_in? %>
+ <span class="btn">
+    <%= link_to "Sign In!!", new_user_session_path, :class=>"dropdown-toggle" %>
+    
+   </span>
+    
+    <% else%>
+   <%= link_to "Sign Out!!", destroy_user_session_path, :method => :delete  %>
+   
+    <%end %> 
+
+  </li>
+    </ul>
+
+  </div>
+</div>
+</div>
+</div>

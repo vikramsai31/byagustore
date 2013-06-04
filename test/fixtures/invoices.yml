@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id              :integer
+#  order_id        :integer
+#  amount          :decimal(8, 2)
+#  invoice_type    :string(35)       default("purchase")
+#  state           :string(55)
+#  active          :string(1)        default("Y")
+#  created_at      :timestamp        not null
+#  updated_at      :timestamp        not null
+#  credited_amount :decimal(8, 2)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value

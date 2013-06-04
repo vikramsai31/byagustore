@@ -1,0 +1,17 @@
+<uL>
+<% if @lineitem.present? %>
+<%  @lineitem.each do |item| %>
+<% item.product.photos.each_with_index do |photo, i| %>
+          	<% if i == 0%>
+         
+         <%= (image_tag photo.data.url(:thumb), :width => 30) %>
+            <% end %>
+            <% end %> 
+         <span class="mini-cart-title"> <%= link_to item.product.name,product_path(item.product.id) %></span>
+           <span class="mini-cart-quantity">Quantity: <%=  item.quantity %></span>
+            <%end%>
+            <%= link_to 'View Cart', cart_path(current_cart), :class=>"btn btn-warning"%>
+            <% else %>
+            <span class="mini-cart-title">No items added to cart</span>
+            <%end %>
+</u>

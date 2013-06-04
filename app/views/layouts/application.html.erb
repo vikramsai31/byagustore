@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Byagu your store our service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  <%= render 'layouts/stylesheets'%>
+  <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Patua+One'>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="/themes/js/less.js" type="text/javascript"></script> 
+     
+  <%= javascript_include_tag "application" %>
+   <%= javascript_include_tag "Braintree" %>
+   
+  <link rel="shortcut icon" href="/themes/images/ico/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/themes/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/themes/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/themes/images/ico/apple-touch-icon-57-precomposed.png">
+  
+ 
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+
+<%= yield %>
+<%= render 'layouts/footer' %>
+
+
+
+</div>
+
+<!-- Placed at the end of the document so the pages load faster ============================================= -->
+   <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	
+	<script src="/themes/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/themes/js/google-code-prettify/prettify.js"></script>
+	<script src="/themes/js/bootshop.js"></script>
+	
+    
+     <%= javascript_include_tag "jquery.lightbox-0.5" %>
+	<script type="text/javascript">
+	$('#myCarousel').carousel({
+	  interval: 8000
+	})
+	 $('#featured').carousel({
+	  interval: 4000
+	})
+	$('#differentview').carousel({
+	  interval: 2000
+	})
+	$(function() {
+		$('#gallery a').lightBox();
+	});
+	
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+ <div id="mainBody">
+  <div class="container">
+  <div class="row">
+  <%= render 'home/category_sidebar' %>
+  
+  <div class="span9">
+    <ul class="breadcrumb">
+    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+    <li><a href="products.html">Products</a> <span class="divider">/</span></li>
+    <li class="active">product Details</li>
+    </ul>	
+	<div class="row">	  
+			<div id="gallery" class="span3">
+            <a href ="<%= @product.photos.first.data.url(:large) %>" title="<%= @product.name%>">
+				<img src="<%= @product.photos.first.data.url(:medium) %>" style="width:100%"
+				 alt ="<%= @product.name%>" />
+				 </a>
+			<div id="differentview" class="moreOptopm carousel slide">
+                <div class="carousel-inner">
+                  <div class="item active">
+                  	<% @product.photos.each do |photo| %>
+  <a href="<%= photo.data.url(:large) %>">
+  	<img style="width:29%" src="<%= photo.data.url(:medium) %>"/> 
+  	</a>
+<% end %>
+                   </div>
+                  <div class="item">
+                  	<% @product.photos.each do |photo| %>
+  <a href="<%= photo.data.url(:large) %>">
+  	<img style="width:29%" src="<%= photo.data.url(:medium) %>"/> 
+  	</a>
+  	<%end%>
+                  </div>
+                </div>
+              <!--  
+			  <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a> 
+			  -->
+              </div>
+			  
+			 <div class="btn-toolbar">
+			  <div class="btn-group">
+				<span class="btn"><i class="icon-envelope"></i></span>
+				<span class="btn" ><i class="icon-print"></i></span>
+				<span class="btn" ><i class="icon-zoom-in"></i></span>
+				<span class="btn" ><i class="icon-star"></i></span>
+				<span class="btn" ><i class=" icon-thumbs-up"></i></span>
+				<span class="btn" ><i class="icon-thumbs-down"></i></span>
+			  </div>
+			</div>
+			</div>
+			<div class="span6">
+				<h3><%= @product.name %> </h3>
+				
+				<hr class="soft"/>
+				<%= form_for @line_item, :as => :line_item , :url => line_items_path(:product_id => @product.id), :html => {:class => "form-horizontal qtyFrm" } do |f|%>
+				  <div class="control-group">
+					<label class="control-label"><span>$<%= @product.price %></span></label>
+					<div class="controls">
+					<%= f.text_field :quantity , :placeholder => "QTY", :class => "span1"%>
+					
+<%= button_to 'Add to Cart',  line_items_path(:product_id => @product.id) , :class=>"btn btn-large pull-right" %>
+
+
+					</div>
+				  </div>
+				<% end %>
+				
+				<hr class="soft"/>
+				<h4>100 items in stock</h4>
+				<form class="form-horizontal qtyFrm pull-right">
+				  <div class="control-group">
+					<label class="control-label"><span>Color</span></label>
+					<div class="controls">
+					   <%= select_tag "Color", options_for_select(@product.color_available.split(",")) %>
+					</div>
+				  </div>
+				<!--  <div class="control-group">
+					<label class="control-label"><span>Materials</span></label>
+					<div class="controls">
+					  <select class="span2">
+						  <option>Slik</option>
+						  <option>Cotton</option>
+						  <option>Mix</option>
+						  <option>Ruby</option>
+						</select>
+					</div>
+				  </div> -->
+				</form>
+				<hr class="soft clr"/>
+				<p>
+			<%= @product.description%>
+				
+				</p>
+				<a class="btn btn-small pull-right" href="#detail">More Details</a>
+				<br class="clr"/>
+			<a href="#" name="detail"></a>
+			<hr class="soft"/>
+			</div>
+			
+			<div class="span9">
+            <ul id="productDetail" class="nav nav-tabs">
+              <li class="active"><a href="#home" data-toggle="tab">Product Details</a></li>
+              <li><a href="#profile" data-toggle="tab">Related Products</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="home">
+			  <h4>Product Information</h4>
+                <table class="table table-bordered">
+				<tbody>
+				<tr class="techSpecRow"><th colspan="2">Product Details</th></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Brand: </td><td class="techSpecTD2"><%= @product.brand %></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Model:</td><td class="techSpecTD2"><%= @product.brand_model_no %></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Dimensions:</td><td class="techSpecTD2"> <%= @product.dimensions%></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Weight:</td><td class="techSpecTD2"><%= @product.weight%></td></tr>
+				</tbody>
+				</table>
+				
+				<h5>Features</h5>
+				<p>
+				14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO sensitivity ISO6400 at reduced resolution. Tracking Auto Focus. Motion Panorama Mode. Face Detection technology with Blink detection and Smile and shoot mode. 4 x AA batteries not included. WxDxH 110.2 ×81.4x73.4mm. Weight 0.341kg (excluding battery and memory card). Weight 0.437kg (including battery and memory card).<br/>
+				OND363338
+				</p>
+
+				<h4>Editorial Reviews</h4>
+				<h5>Manufacturer's Description </h5>
+				<p>
+				<%= @product.description%>
+				</p>
+
+				<h5><%= @product.heading1 %></h5>
+				<p>
+				<%= @product.heading1_desc %>
+				</p>
+				<h5><%= @product.heading2 %></h5>
+				<p>
+				<%= @product. heading2_desc %>
+				</p>
+
+				
+              </div>
+		<div class="tab-pane fade" id="profile">
+		<div id="myTab" class="pull-right">
+		 <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
+		 <a href="#blockView" data-toggle="tab"><span class="btn btn-large active"><i class="icon-th-large icon-white"></i></span></a>
+		</div>
+		<br class="clr"/>
+		<hr class="soft"/>
+		<div class="tab-content">
+			<div class="tab-pane" id="listView">
+				<div class="row">	  
+					<div class="span2">
+						<img src="themes/images/products/4.jpg" alt=""/>
+					</div>
+					<div class="span4">
+						<h3>New | Available</h3>				
+						<hr class="soft"/>
+						<h5>Product Name </h5>
+						<p>
+						Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+						that is why our goods are so popular..
+						</p>
+						<a class="btn btn-small pull-right" href="product_details.html">View Details</a>
+						<br class="clr"/>
+					</div>
+					<div class="span3 alignR">
+					<form class="form-horizontal qtyFrm">
+					<h3> $222.00</h3>
+					<label class="checkbox">
+						<input type="checkbox">  Adds product to compair
+					</label><br/>
+					<div class="btn-group">
+					  <a href="product_details.html" class="btn btn-large"><i class=" icon-shopping-cart"></i> Add to cart</a>
+					  <a href="product_details.html" class="btn btn-large">VIEW</a>
+					 </div>
+						</form>
+					</div>
+			</div>
+			<hr class="soft"/>
+			<div class="row">	  
+					<div class="span2">
+						<img src="themes/images/products/4.jpg" alt=""/>
+					</div>
+					<div class="span4">
+						<h3>New | Available</h3>				
+						<hr class="soft"/>
+						<h5>Product Name </h5>
+						<p>
+						Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+						that is why our goods are so popular..
+						</p>
+						<a class="btn btn-small pull-right" href="product_details.html">View Details</a>
+						<br class="clr"/>
+					</div>
+					<div class="span3 alignR">
+					<form class="form-horizontal qtyFrm">
+						<h3> $222.00</h3>
+						<label class="checkbox">
+						<input type="checkbox">  Adds product to compair
+						</label><br/>
+						<div class="btn-group">
+						<a href="product_details.html" class="btn btn-large"><i class=" icon-shopping-cart"></i> Add to cart</a>
+						<a href="product_details.html" class="btn btn-large">VIEW</a>
+						</div>
+					</form>
+					</div>
+			</div>
+			<hr class="soft"/>
+			<div class="row">	  
+					<div class="span2">
+					<img src="themes/images/products/4.jpg" alt=""/>
+					</div>
+					<div class="span4">
+						<h3>New | Available</h3>				
+						<hr class="soft"/>
+						<h5>Product Name </h5>
+						<p>
+						Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+						that is why our goods are so popular..
+						</p>
+						<a class="btn btn-small pull-right" href="product_details.html">View Details</a>
+						<br class="clr"/>
+					</div>
+					<div class="span3 alignR">
+					<form class="form-horizontal qtyFrm">
+					<h3> $222.00</h3>
+					<label class="checkbox">
+						<input type="checkbox">  Adds product to compair
+					</label><br/>
+				<div class="btn-group">
+				  <a href="product_details.html" class="btn btn-large"><i class=" icon-shopping-cart"></i> Add to cart</a>
+				  <a href="product_details.html" class="btn btn-large">VIEW</a>
+				 </div>
+						</form>
+					</div>
+			</div>
+			<hr class="soft"/>
+			<div class="row">	  
+					<div class="span2">
+					<img src="themes/images/products/4.jpg" alt=""/>
+					</div>
+					<div class="span4">
+						<h3>New | Available</h3>				
+						<hr class="soft"/>
+						<h5>Product Name </h5>
+						<p>
+						Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+						that is why our goods are so popular..
+						</p>
+						<a class="btn btn-small pull-right" href="product_details.html">View Details</a>
+						<br class="clr"/>
+					</div>
+					<div class="span3 alignR">
+						<form class="form-horizontal qtyFrm">
+						<h3> $222.00</h3>
+						<label class="checkbox">
+						<input type="checkbox">  Adds product to compair
+						</label><br/>
+						<div class="btn-group">
+						<a href="product_details.html" class="btn btn-large"><i class=" icon-shopping-cart"></i> Add to cart</a>
+						<a href="product_details.html" class="btn btn-large">VIEW</a>
+						</div>
+						</form>
+					</div>
+			</div>
+			
+			<hr class="soft"/>
+			<div class="row">	  
+					<div class="span2">
+					<img src="themes/images/products/4.jpg" alt=""/>
+					</div>
+					<div class="span4">
+						<h3>New | Available</h3>				
+						<hr class="soft"/>
+						<h5>Product Name </h5>
+						<p>
+						Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+						that is why our goods are so popular..
+						</p>
+						<a class="btn btn-small pull-right" href="product_details.html">View Details</a>
+						<br class="clr"/>
+					</div>
+					<div class="span3 alignR">
+						<form class="form-horizontal qtyFrm">
+						<h3> $222.00</h3>
+						<label class="checkbox">
+						<input type="checkbox">  Adds product to compair
+						</label><br/>
+						<div class="btn-group">
+						<a href="product_details.html" class="btn btn-large"><i class=" icon-shopping-cart"></i> Add to cart</a>
+						<a href="product_details.html" class="btn btn-large">VIEW</a>
+						</div>
+						</form>
+					</div>
+			</div>
+			<hr class="soft"/>
+				<div class="row">	  
+					<div class="span2">
+					<img src="themes/images/products/4.jpg" alt=""/>
+					</div>
+					<div class="span4">
+						<h3>New | Available</h3>				
+						<hr class="soft"/>
+						<h5>Product Name </h5>
+						<p>
+						Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+						that is why our goods are so popular..
+						</p>
+						<a class="btn btn-small pull-right" href="product_details.html">View Details</a>
+						<br class="clr"/>
+					</div>
+					<div class="span3 alignR">
+						<form class="form-horizontal qtyFrm">
+						<h3> $222.00</h3>
+						<label class="checkbox">
+						<input type="checkbox">  Adds product to compair
+						</label><br/>
+						<div class="btn-group">
+						<a href="product_details.html" class="btn btn-large"><i class=" icon-shopping-cart"></i> Add to cart</a>
+						<a href="product_details.html" class="btn btn-large">VIEW</a>
+						</div>
+						</form>
+					</div>
+			</div>
+			<hr class="soft"/>
+		</div>
+			<div class="tab-pane active" id="blockView">
+				<ul class="thumbnails">
+					<li class="span3">
+					  <div class="thumbnail">
+						<a href="product_details.html"><img src="themes/images/products/4.jpg" alt=""/></a>
+						<div class="caption">
+						  <h5>Manicure &amp; Pedicure</h5>
+						  <p> 
+							Lorem Ipsum is simply dummy text. 
+						  </p>
+						  <h4><a class="btn btn-large" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+						</div>
+					  </div>
+					</li>
+					<li class="span3">
+					  <div class="thumbnail">
+						<a href="product_details.html"><img src="themes/images/products/4.jpg" alt=""/></a>
+						<div class="caption">
+						  <h5>Manicure &amp; Pedicure</h5>
+						  <p> 
+							Lorem Ipsum is simply dummy text. 
+						  </p>
+						  <h4><a class="btn btn-large" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+						</div>
+					  </div>
+					</li>
+					<li class="span3">
+					  <div class="thumbnail">
+						<a href="product_details.html"><img src="themes/images/products/4.jpg" alt=""/></a>
+						<div class="caption">
+						  <h5>Manicure &amp; Pedicure</h5>
+						  <p> 
+							Lorem Ipsum is simply dummy text. 
+						  </p>
+						   <h4><a class="btn btn-large" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+						</div>
+					  </div>
+					</li>
+					<li class="span3">
+					  <div class="thumbnail">
+						<a href="product_details.html"><img src="themes/images/products/4.jpg" alt=""/></a>
+						<div class="caption">
+						  <h5>Manicure &amp; Pedicure</h5>
+						  <p> 
+							Lorem Ipsum is simply dummy text. 
+						  </p>
+						   <h4><a class="btn btn-large" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+						</div>
+					  </div>
+					</li>
+					<li class="span3">
+					  <div class="thumbnail">
+						<a href="product_details.html"><img src="themes/images/products/4.jpg" alt=""/></a>
+						<div class="caption">
+						  <h5>Manicure &amp; Pedicure</h5>
+						  <p> 
+							Lorem Ipsum is simply dummy text. 
+						  </p>
+						   <h4><a class="btn btn-large" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+						</div>
+					  </div>
+					</li>
+					<li class="span3">
+					  <div class="thumbnail">
+						<a href="product_details.html"><img src="themes/images/products/4.jpg" alt=""/></a>
+						<div class="caption">
+						  <h5>Manicure &amp; Pedicure</h5>
+						  <p> 
+							Lorem Ipsum is simply dummy text. 
+						  </p>
+						   <h4><a class="btn btn-large" href="product_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+						</div>
+					  </div>
+					</li>
+				  </ul>
+			<hr class="soft"/>
+			</div>
+		</div>
+				<br class="clr">
+					 </div>
+		</div>
+          </div>
+
+	</div>
+</div>
+</div> </div>
+</div>
+             
+ 	 
+ 
+
+

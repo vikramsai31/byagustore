@@ -1,0 +1,85 @@
+<div class="container-fluid">
+		<hr class="soft"/>
+	<div class="span12">
+<div class="span9">
+    <ul class="breadcrumb">
+		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+		<li><a href="index.html">Products</a> <span class="divider">/</span></li>
+		<li class="active">Billing/Shipping </li>
+    </ul>
+</div>
+		
+<div class="span7">
+	<%= render "get_addresses"%>
+<br/>
+<br/>
+	<%= render "shared/order_summary_cart"%>
+	
+</div>
+	
+	<div class="row">
+		<div class="span4 pull-right">
+		<%= form_for(@order,:id   => 'purchase_order' ) do |f| %>
+	<div class="well">
+		<h3> Place Order</h3>
+	<div class="span3">
+		<div class="alert-error">
+			<%= render "shared/error_messages", :target => @order %>
+			<%= flash[:error] %>
+		</div>
+		</div>
+	 <%= f.hidden_field :first_name ,:value =>  "vikram" %>
+	  <%= f.hidden_field :last_name , :value => "vikram" %>
+		
+		
+		
+
+	 <div class="control-group">
+  <%= f.label :card_type %>
+  <div class="controls">
+    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]],:class=>"span2" %>
+  </div>
+  </div>
+  
+  <div class="control-group">
+  <%= f.label :card_number, "Card Number" %>
+   <div class="controls">
+   
+    <%= f.text_field :card_number, :class=>"span2" ,:placeholder=>"Card Number" %>
+ 
+    
+ 
+
+   
+  <%= f.text_field :card_verification, :class=>"span1" ,:placeholder=>"CVV" %>
+  
+     </div>
+      
+  </div>
+  <div class="control-group">
+    <%= f.label :card_expires_on %>
+     <div class="controls">
+   <%= f.date_select :card_expires_on, {:discard_day => true, :start_year => Date.today.year,:end_year => (Date.today.year+11), 
+          :use_month_numbers  =>true}, {:class=> 'span1'}%>
+  </div>
+  </div>
+ 
+  <%= f.submit "Place Order",:class=>"btn btn-success btn-large" %>
+	
+	<%end %>
+	
+   
+	</div>
+	</div>	
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js"></script>
+    <script type="text/javascript" > 
+     var braintree = Braintree.create("MIIBCgKCAQEArg9anUuVhn9wZBKq0PQQ+KoNisXQJQlrJsj5XY1fJvQSasVUc7iRoUzfZ7O9U+NdNAdHCl3SrmAg4Lod1XaVpXuthaKYS5igG/gBN3Mf3Tbk2KK3s+1TUrsLUHzxgdh5z1clkDwVexizgrjYbGZhkkUft00csBq1gqI/RQ2JH0KNjumjgSiSCe3cI3l/n2jzGEvn9v14ZEt5efFbU12Bo4z+nbxKHJ9Q6ZgsJwRoLuYvKjEI6/IDsByHhKtdU0e0fV04u3RtKjiLmgYaT2wg1c6BlYQvYuEgYpzojvZtf0oKahxYDZFKrl0P3A32rUHRPK2wRWXRtHHe3NkyNAJsXwIDAQAB");
+braintree.onSubmitEncryptForm('purchase_order');
+    	</script>
+    	
+
+	
+	

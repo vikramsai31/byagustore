@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+	<tr>
+		<th> ID </th>
+		<th>Name </th>
+		<th>Unit Price </th>
+		<th> Quantity </th>
+		<th>  Price </th>
+		<th></th>
+	</tr>
+
+<%  for item in @cart.line_items %>
+<tr>
+	<td><%= item.id %>
+<td><%=  %></td>
+<td><%=  %></td>
+<td><%= form_for(item) do |f| %>
+ 
+
+  <div class="field">
+    <%= f.number_field  :quantity %>
+  </div>
+<% end %>
+</td>
+<td><%= number_to_currency(LineItem.get_price(item.id,item.product.price)) %></td>
+<td><%= link_to 'Remove', item , confirm: 'Are you sure?', method: :delete  %></td>
+</tr>
+
+<% end %>
+
+
+
+</table>
+<span> Total </span><%= number_to_currency(Cart.get_total(session[:cart_id])) %>
+
+

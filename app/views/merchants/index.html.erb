@@ -1,0 +1,34 @@
+<div id="mainBody">
+  <div class="container">
+  <div class="row">
+  
+  
+  <div class="span9">
+    <ul class="breadcrumb">
+    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+    <li><a href="products.html">Products</a> <span class="divider">/</span></li>
+    <li class="active">Stores</li>
+    </ul>	
+	<ul class="thumbnails"> 
+			
+<% @merchant.each do |f| %>
+<li class="span3">
+	<div class="thumbnail">
+<%= link_to image_tag(f.logo.url(:thumb), :style=>"width:30%"), merchant_path(f.id) %>
+ <div class="caption">
+<h5><%= link_to f.merchant_name.titleize , merchant_path(f.id) %></h5>
+<p class="bar-info">
+<%= f.city.capitalize %>,
+<%= f.state.upcase %>
+</p>
+
+</div>
+          </div>
+        </li>
+<% end %>
+ </ul> 
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

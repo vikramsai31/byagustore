@@ -1,0 +1,60 @@
+<div class="span9">
+    <div>
+      <h3>Featured Products </h3>
+      <div class="row-fluid">
+      <div id="featured" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+        	 
+        <ul class="thumbnails">
+        <% @featured.each do |product| %>
+        <li class="span3">
+          <div class="thumbnail">
+          	<% product.photos.each_with_index do |photo, i| %>
+          	<% if i == 0%>
+         
+          <%= link_to (image_tag photo.data.url(:medium),:width=>100), product_path(product.id) %>
+            <% end %>
+            <% end %>
+            <div class="caption">
+            	<h5><%= product.name.titleize %></h5>
+            	<h5><%= link_to "View", product_path(product.id) ,:class => " btn btn-medium " %>
+            		<span class="pull-right">$<%= product.price %>
+            	</h5>
+            	 </div>
+          </div>
+          <% end %>
+        </li>
+   </ul>
+   </div>
+    <div class="item">
+        	 
+        <ul class="thumbnails">
+        <% @featured.each do |product| %>
+        <li class="span3">
+          <div class="thumbnail">
+          	<% product.photos.each_with_index do |photo, i| %>
+          	<% if i == 0%>
+         
+          <%= link_to (image_tag photo.data.url(:medium),:width=>100), product_path(product.id) %>
+            <% end %>
+            <% end %>
+            <div class="caption">
+            	<h5><%= product.name.titleize %></h5>
+            	<h5><%= link_to "View", product_path(product.id) ,:class => "btn btn-medium" %>
+            		<span class="pull-right">$<%= product.price %>
+            	</h5>
+            	 </div>
+          </div>
+          <% end %>
+        </li>
+   </ul>
+   
+   </div>
+   
+   
+   </div>
+    <a class="left carousel-control" href="#featured" data-slide="prev">&lsaquo;</a>
+        <a class="right carousel-control" href="#featured" data-slide="next">&rsaquo;</a>
+        </div>
+        </div>

@@ -1,0 +1,163 @@
+
+<hr class="soft"/>
+	<div class="well">
+<%= form_for(@product , :html => {:multipart => true,:class=> "form-horizontal"}) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="control-group">
+  	<%= f.label :merchant_id,"Merchant*", :class=>"control-label"%>
+  	 <div class="controls">
+ <%= f.collection_select(:merchant_id, Merchant.all, :id, :merchant_name,{:include_blank => 'Select Merchant'}) %>
+</div>
+</div>
+
+ <div class="control-group">
+  	<%= f.label :category_id,"Category*", :class=>"control-label"%>
+  	 <div class="controls">
+ <%= f.collection_select(:category_id, Category.all, :id, :subdivision,{:include_blank => 'Select Category'}) %>
+</div>
+</div>
+  <div class="control-group">
+    <%= f.label :name,"Name*", :class=>"control-label" %>
+    <div class="controls">
+    	
+    	<div id="inputFname1">
+    	
+    <%= f.text_field :name  %>
+    </div>
+    </div>
+  </div>
+  
+   
+  
+   <div class="control-group">
+    <%= f.label :brand,"Brand*", :class=>"control-label" %>
+    <div class="controls">
+    	
+    	<div id="inputFname1">
+    	
+    <%= f.text_field :brand %>
+    </div>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :brand_model_no,"Brand Model No.*", :class=>"control-label" %>
+    <div class="controls">
+    	
+    	<div id="inputFname1">
+    	
+    <%= f.text_field :brand_model_no  %>
+    </div>
+    </div>
+  </div>
+  
+ <div class="control-group">
+    <%= f.label :description, "Description*" ,:size=>100, :class=>"control-label"%>
+     <div class="controls">
+    <%= f.text_area :description,:cols => "50", :rows => "5"  %>
+    </div>
+  </div>
+<div class="control-group">
+    <%= f.label :price, "Price*", :class=>"control-label" %>
+      <div class="controls">
+    <%= f.text_field :price %>
+      </div>
+  </div>
+ 
+   <div class="control-group">
+    <%= f.label :weight, "Weight", :class=>"control-label" %>
+     <div class="controls">
+    <%= f.text_field :weight %><br><span id="hint" tabindex="2">(ex- 2LB)</span>
+     </div>
+  </div>
+  
+   <div class="control-group">
+    <%= f.label :dimensions, "Dimension", :class=>"control-label" %>
+     <div class="controls">
+    <%= f.text_field :dimensions %><br><span id="hint" tabindex="2">(ex:L12,W24,H24)</span>
+     </div>
+  </div>
+  
+   <div class="control-group">
+    <%= f.label :variant, "Product Variant", :class=>"control-label" %>
+     <div class="controls">
+    <%= f.text_field :Variant %><br><span id="hint" tabindex="2">(ex:Size,Color..etc)</span>
+     </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :variant_type, "Variant Type", :class=>"control-label" %>
+     <div class="controls">
+    <%= f.text_field :Variant %><br><span id="hint" tabindex="2">(ex:1,2,3)</span>
+     </div>
+  </div>
+  
+  
+<div class="control-group">
+    <%= f.label :model_no,"Model No.*" ,:class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_field :model_no %>
+     </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :heading1,"Heading1" ,:class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_field :heading1 %>
+     </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :heading1_desc,"Descripton1*" ,:class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_area :heading1_desc,:cols => "50", :rows => "5" %>
+     </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :heading2,"Heading2" ,:class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_field :heading2 %>
+     </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :heading2_desc,"Description2" ,:class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_area :heading2_desc , :cols => "50", :rows => "5"%>
+     </div>
+  </div>
+  
+<span>Product Images</span>
+ <%= f.fields_for :photos do |photo| %>
+  <% if photo.object.new_record?  %>
+   <div class="control-group">
+   	<div class="controls">
+    <%= photo.file_field :data %>
+    </div>
+    </div>
+    <% end %>
+ <% end %>
+ 
+
+<div class="control-group">
+	  	<div class="controls">
+	  		
+    <%= f.submit "Add Product", :class=>"btn btn-success btn-large" %>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+
+ 
