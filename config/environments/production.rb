@@ -67,7 +67,7 @@ Byagustore::Application.configure do
   :password => "1364937588",
   :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31A8GIFWBC3jMBz3VnExvn5N7kfPsB"
   )
-
+end
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
