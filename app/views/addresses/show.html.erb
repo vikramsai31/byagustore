@@ -9,7 +9,7 @@
     <li><a href="products.html">Products</a> <span class="divider">/</span></li>
     <li class="active">Address</li>
     </ul>	
-<% if @address.nil? %>
+<% if !@address.present? %>
 <h2>New Address</h2>
 
 <% else %>
@@ -18,7 +18,7 @@
 <% end %>
 
 <div class='row'>
-<% @address.each do |address| %>
+<% @address.present? and @address.each do |address| %>
 <div class="span3">
 	<div class="well">
       <%= render :partial => 'show_addresses', :locals => {:address => address} %><br/>

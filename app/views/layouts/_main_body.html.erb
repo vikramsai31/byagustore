@@ -7,7 +7,7 @@
           	<% product.photos.each_with_index do |photo, i| %>
           	<% if i == 0%>
          
-          <%= link_to (image_tag photo.data.url(:thumb)), product_path(product.id) %>
+          <%= link_to (image_tag photo.data.url(:large)), product_path(product.id) %>
             <% end %>
             <% end %>
           <div class="caption">

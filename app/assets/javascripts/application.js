@@ -14,37 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(function(){
-		$('#maincart').popover({trigger: 'manual' ,
-		                       placement: 'bottom',                      
-		                        html : true 
-		                        }).mouseover(function (e) {
-        // when hovering over an element which has a popover, hide
-        // them all except the current one being hovered upon
-        $('[rel=popover]').not('#' + $(this).attr('id')).popover('hide');
-        var $popover = $(this);
-        $popover.popover('show');
 
-        // set a flag when you move from button to popover
-        // dirty but only way I could think of to prevent
-        // closing the popover when you are navigate across
-        // the white space between the two
-        $popover.data('popover').tip().mouseenter(function () {
-            overPopup = true;
-        }).mouseleave(function () {
-            overPopup = false;
-            $popover.popover('hide');
-        })}).mouseout(function (e) {
-        // on mouse out of button, close the related popover
-        // in 200 milliseconds if you're not hovering over the popover
-        var $popover = $(this);
-        setTimeout(function () {
-            if (!overPopup) {
-                $popover.popover('hide');
-            }
-        }, 200);
-    });;  
-	});
 	
 	
 

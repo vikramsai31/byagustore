@@ -17,7 +17,21 @@ class MerchantsController < ApplicationController
  
  end
   
-  
+  def create
+    
+    @merchant = Merchant.new(params[:merchant])
+
+    respond_to do |format|
+      if @merchant.save
+        format.html { render action: "confirm", notice: 'Merchant was successfully created.' }
+        format.json { render json: @merchant, status: :created, location: @merchant }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @merchant.errors, status: :unprocessable_entity }
+      end
+    end
+    
+  end
   
   
   def edit

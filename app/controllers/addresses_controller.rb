@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
     before_filter :authenticate_user!
   
   def index
-    @addresses = current_user.addresses
+    @address = current_user.addresses
   end
   
   def new
@@ -22,12 +22,15 @@ class AddressesController < ApplicationController
     
     @address = current_user.addresses.new(params[:address])
     @address.save
-     if @address.save
-     render action "show"
-     else
-       render action "new"
-       flash[:error] ="Address Cannot be Saved"
-     end
+     respond_to do |format|
+    if @address.save
+      format.html { redirect_to @address, notice: 'Address was successfully created.' }
+      format.json { render json: @address, status: :created, location: @address}
+    else
+      format.html { render action: "new" }
+      format.json { render json: @address.errors, status: :unprocessable_entity }
+    end
+  end
   end
     
     
