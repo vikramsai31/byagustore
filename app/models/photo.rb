@@ -15,8 +15,8 @@
 class Photo < ActiveRecord::Base
 	belongs_to :product
 	has_attached_file :data, :styles => { :thumb => "100x100#", 
-	  :medium => "300x300#", 
-	  :large => "500x500>" },
+	  :medium => "500x500#", 
+	  :large => "700x700>" },
 	:url  => "/assets/products/:id/:style/:basename.:extension",
     :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
 

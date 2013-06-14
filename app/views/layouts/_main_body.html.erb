@@ -2,27 +2,24 @@
 
         <ul class="thumbnails">
         	<% @product.each do |product| %>
-        <li class="span3">
+       <li class="span3">
           <div class="thumbnail">
           	<% product.photos.each_with_index do |photo, i| %>
           	<% if i == 0%>
          
-          <%= link_to (image_tag photo.data.url(:large)), product_path(product.id) %>
+          <%= link_to (image_tag photo.data.url(:medium),:width=>200), product_path(product.id) %>
             <% end %>
             <% end %>
-          <div class="caption">
-            <h5><%= product.name %></h5>
-            <p> 
-           
-            
-            	<h4><%= link_to "View", product_path(product.id) ,:class => "btn btn-medium" %>
-            
-            	 <span class="pull-right">$<%= product.price %></span></h4>
+            <div class="caption">
+            	<h5><%= product.name.titleize %></h5>
+            	<h5><%= link_to "View", product_path(product.id) ,:class => " btn btn-medium " %>
+            		<span class="pull-right">$<%= product.price %>
+            	</h5>
+            	 </div>
           </div>
-          </div>
+          <% end %>
         </li>
-        <% end %>
-        </ul> 
+   </ul>
       </div>
     </div>
     </div>

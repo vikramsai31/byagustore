@@ -1,4 +1,4 @@
-<div class="span9">
+<div class="span12">
     <div>
       <h3>Featured Products </h3>
       <div class="row-fluid">
@@ -13,7 +13,7 @@
           	<% product.photos.each_with_index do |photo, i| %>
           	<% if i == 0%>
          
-          <%= link_to (image_tag photo.data.url(:medium),:width=>100), product_path(product.id) %>
+          <%= link_to (image_tag photo.data.url(:medium),:width=>200), product_path(product.id) %>
             <% end %>
             <% end %>
             <div class="caption">
@@ -36,7 +36,7 @@
           	<% product.photos.each_with_index do |photo, i| %>
           	<% if i == 0%>
          
-          <%= link_to (image_tag photo.data.url(:medium),:width=>100), product_path(product.id) %>
+          <%= link_to (image_tag photo.data.url(:medium),:width=>200), product_path(product.id) %>
             <% end %>
             <% end %>
             <div class="caption">

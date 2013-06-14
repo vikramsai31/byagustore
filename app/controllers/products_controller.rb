@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @category_div = Category.get_category
+    @similar_products = Product.where(:category_id =>@product.category_id)
 
     respond_to do |format|
       format.html # show.html.erb
